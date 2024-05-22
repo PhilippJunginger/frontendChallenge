@@ -3,34 +3,36 @@ export enum FIELD_TYPE {
     NUMBER = 'NUMBER',
     RADIO = 'RADIO',
     CHECKBOX = 'CHECKBOX',
+    TEXTAREA = 'TEXTAREA',
 }
 
-export type StringField = {
+type BaseField = {
+    type: FIELD_TYPE;
+    formFieldName: string;
+    mandatory: boolean;
+    label: string;
+    weight: number;
+};
+
+export interface StringField extends BaseField {
     type: FIELD_TYPE.STRING;
-    weight: number;
-    mandatory: boolean;
-    label: string;
-};
+    inputType?: 'tel' | 'email' | 'text';
+}
 
-export type NumberField = {
+export interface TextAreaField extends BaseField {
+    type: FIELD_TYPE.TEXTAREA;
+}
+
+export interface NumberField extends BaseField {
     type: FIELD_TYPE.NUMBER;
-    weight: number;
-    mandatory: boolean;
-    label: string;
-};
+}
 
-export type RadioField = {
+export interface RadioField extends BaseField {
     type: FIELD_TYPE.RADIO;
-    weight: number;
-    mandatory: boolean;
-    label: string;
     selectedValue: string;
-};
+}
 
-export type CheckboxField = {
+export interface CheckboxField extends BaseField {
     type: FIELD_TYPE.CHECKBOX;
-    weight: number;
-    mandatory: boolean;
-    label: string;
     selectedValue: string;
-};
+}
