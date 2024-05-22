@@ -14,6 +14,8 @@ type BaseField = {
     weight: number;
 };
 
+export type FormField = StringField | TextAreaField | NumberField | RadioField | CheckboxField;
+
 export interface StringField extends BaseField {
     type: FIELD_TYPE.STRING;
     inputType?: 'tel' | 'email' | 'text';

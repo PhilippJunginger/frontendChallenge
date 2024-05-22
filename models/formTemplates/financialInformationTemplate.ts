@@ -6,6 +6,8 @@ import { SALARY } from '../form/subForms/financialInformationForm';
 export const FinancialInformationTemplate: Template = {
     name: 'Financial Information',
     type: FORM_TYPE.FINANCIAL_INFORMATION,
+    previousForm: FORM_TYPE.PERSONAL_INFORMATION,
+    nextForm: FORM_TYPE.LIVING_SITUATION,
     rows: [
         {
             type: ROW_TYPE.FIELDS,

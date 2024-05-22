@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { Address, addressValidator } from '../types/address';
+import { FORM_TYPE } from '../../formTemplates/types/template';
 
 export enum SALARY {
     ZERO_TO_ONE_K = '0 - 1.000',
@@ -10,6 +11,7 @@ export enum SALARY {
 }
 
 export type FinancialInformationForm = {
+    formType: FORM_TYPE.FINANCIAL_INFORMATION;
     occupationTitle?: string;
     companyName?: string;
     address?: Address;

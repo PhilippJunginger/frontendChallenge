@@ -6,6 +6,7 @@ import { PERKS } from '../form/subForms/preferencesForm';
 export const PreferencesTemplate: Template = {
     name: 'Preferences',
     type: FORM_TYPE.PREFERENCES,
+    previousForm: FORM_TYPE.LIVING_SITUATION,
     rows: [
         {
             type: ROW_TYPE.FIELDS,

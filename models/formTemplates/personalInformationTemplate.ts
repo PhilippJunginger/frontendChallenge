@@ -5,6 +5,7 @@ import { FIELD_TYPE } from './types/fields';
 export const PersonalInformationTemplate: Template = {
     name: 'Personal Information',
     type: FORM_TYPE.PERSONAL_INFORMATION,
+    nextForm: FORM_TYPE.FINANCIAL_INFORMATION,
     rows: [
         {
             type: ROW_TYPE.FIELDS,

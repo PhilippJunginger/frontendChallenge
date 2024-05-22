@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { FORM_TYPE } from '../../formTemplates/types/template';
 
 export enum PERKS {
     ELEVATOR = 'Elevator',
@@ -9,6 +10,7 @@ export enum PERKS {
 }
 
 export type PreferencesForm = {
+    formType: FORM_TYPE.PREFERENCES;
     minRent?: number;
     maxRent?: number;
     perks: PERKS[];

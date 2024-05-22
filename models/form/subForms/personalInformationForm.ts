@@ -1,6 +1,8 @@
 import { z } from 'zod';
+import { FORM_TYPE } from '../../formTemplates/types/template';
 
 export type PersonalInformationForm = {
+    formType: FORM_TYPE.PERSONAL_INFORMATION;
     firstName: string;
     lastName: string;
     eMail: string;
