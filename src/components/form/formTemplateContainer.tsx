@@ -30,10 +30,11 @@ export default function FormTemplateContainer(props: FormContainerProps) {
     }, [formsVisited.length]);
 
     const onSubmit = async () => {
+        void trigger();
         const result = tenantApplicationSchema.safeParse(tenantApplication);
 
         if (result.success) {
-            navigate('/summary');
+            navigate('/forms/summary');
             return;
         }
 

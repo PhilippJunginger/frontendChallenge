@@ -13,10 +13,11 @@ interface FormFieldProps {
     field: FormField;
     form: Form;
     setForm: SetAtom<[SetStateAction<Form>], void>;
+    isSummary?: boolean;
 }
 
 export default function FormFieldRenderer(props: FormFieldProps) {
-    const { field, setForm, form } = props;
+    const { field, setForm, form, isSummary } = props;
     const { formFieldName, type, mandatory } = field;
 
     const { setValue, clearErrors } = useFormContext();
@@ -59,7 +60,14 @@ export default function FormFieldRenderer(props: FormFieldProps) {
     function handleRenderField() {
         switch (type) {
             case FIELD_TYPE.CHECKBOX:
-                return <CheckboxFormField field={field} handleChange={handleChange} fieldValue={fieldValue} />;
+                return (
+                    <CheckboxFormField
+                        field={field}
+                        handleChange={handleChange}
+                        fieldValue={fieldValue}
+                        isSummary={isSummary}
+                    />
+                );
             case FIELD_TYPE.NUMBER:
                 return (
                     <NumberFormField
@@ -67,10 +75,18 @@ export default function FormFieldRenderer(props: FormFieldProps) {
                         handleChange={handleChange}
                         fieldValue={fieldValue}
                         optionalLabel={optionalLabel}
+                        isSummary={isSummary}
                     />
                 );
             case FIELD_TYPE.RADIO:
-                return <RadioFormField field={field} handleChange={handleChange} fieldValue={fieldValue} />;
+                return (
+                    <RadioFormField
+                        field={field}
+                        handleChange={handleChange}
+                        fieldValue={fieldValue}
+                        isSummary={isSummary}
+                    />
+                );
             case FIELD_TYPE.STRING:
                 return (
                     <StringFormField
@@ -78,6 +94,7 @@ export default function FormFieldRenderer(props: FormFieldProps) {
                         handleChange={handleChange}
                         fieldValue={fieldValue}
                         optionalLabel={optionalLabel}
+                        isSummary={isSummary}
                     />
                 );
             case FIELD_TYPE.TEXTAREA:
@@ -87,6 +104,7 @@ export default function FormFieldRenderer(props: FormFieldProps) {
                         handleChange={handleChange}
                         fieldValue={fieldValue}
                         optionalLabel={optionalLabel}
+                        isSummary={isSummary}
                     />
                 );
         }

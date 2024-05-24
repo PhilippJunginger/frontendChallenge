@@ -7,10 +7,11 @@ import { progressItemsAtom } from '../../assets/atoms/progressAtoms.ts';
 
 interface FormTemplateProps {
     template: Template;
+    isSummary?: boolean;
 }
 
 export default function FormTemplate(props: FormTemplateProps) {
-    const { template } = props;
+    const { template, isSummary } = props;
 
     const [form, setForm] = useAtom(formFamily({ type: template.type, data: {} }));
     const hasNoProgressItems = useAtomValue(progressItemsAtom).length === 0;
@@ -20,12 +21,12 @@ export default function FormTemplate(props: FormTemplateProps) {
             container
             rowSpacing={2}
             width={1}
-            sx={{ width: { md: 0.75 }, mx: 'auto', mt: hasNoProgressItems ? 10 : undefined }}>
+            sx={{ width: { md: 0.75 }, mx: 'auto', mt: hasNoProgressItems && !isSummary ? 10 : undefined }}>
             <Grid item>
                 <Typography typography={'h5'}>{template?.name}</Typography>
             </Grid>
             {template?.rows.map((row, index) => (
-                <FormRow key={row.type + index} row={row} form={form} setForm={setForm} />
+                <FormRow key={row.type + index} row={row} form={form} setForm={setForm} isSummary={isSummary} />
             ))}
         </Grid>
     );

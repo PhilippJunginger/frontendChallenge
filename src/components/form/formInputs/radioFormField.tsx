@@ -1,19 +1,21 @@
-import { FormControlLabel, Radio, Typography } from '@mui/material';
+import { FormControlLabel, Radio } from '@mui/material';
 import { RadioField } from '../../../../models/formTemplates/types/fields.ts';
 
 interface RadioFieldProps {
     field: RadioField;
     fieldValue: string | undefined;
     handleChange: (value: string, formFieldName: string) => void;
+    isSummary?: boolean;
 }
 
 export default function RadioFormField(props: RadioFieldProps) {
-    const { field: radioField, fieldValue, handleChange } = props;
+    const { field: radioField, fieldValue, handleChange, isSummary } = props;
 
     const isSelectedValue = fieldValue == radioField.selectedValue;
 
     return (
         <FormControlLabel
+            disabled={isSummary}
             control={
                 <Radio
                     checked={isSelectedValue}
@@ -21,7 +23,7 @@ export default function RadioFormField(props: RadioFieldProps) {
                     onChange={() => handleChange(radioField.selectedValue, radioField.formFieldName)}
                 />
             }
-            label={<Typography>{radioField.label}</Typography>}
+            label={radioField.label}
         />
     );
 }

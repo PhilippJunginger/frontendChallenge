@@ -7,10 +7,11 @@ interface TextAreaFieldProps {
     fieldValue: string | undefined;
     optionalLabel: string;
     handleChange: (value: string | undefined, formFieldName: string) => void;
+    isSummary?: boolean;
 }
 
 export default function TextAreaFormField(props: TextAreaFieldProps) {
-    const { field: textAreaField, fieldValue, optionalLabel, handleChange } = props;
+    const { field: textAreaField, fieldValue, optionalLabel, handleChange, isSummary } = props;
 
     const { control } = useFormContext();
     const controllerName = textAreaField.formFieldName;
@@ -22,6 +23,7 @@ export default function TextAreaFormField(props: TextAreaFieldProps) {
             render={({ field, fieldState }) => (
                 <TextField
                     fullWidth
+                    disabled={isSummary}
                     value={fieldValue ?? ''}
                     onChange={(e) => handleChange(e.target.value, textAreaField.formFieldName)}
                     inputRef={field.ref}

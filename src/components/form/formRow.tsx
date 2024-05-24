@@ -10,15 +10,16 @@ interface FormRowProps {
     row: Row;
     form: Form;
     setForm: SetAtom<[SetStateAction<Form>], void>;
+    isSummary?: boolean;
 }
 
 export default function FormRow(props: FormRowProps) {
-    const { row, form, setForm } = props;
+    const { row, form, setForm, isSummary } = props;
 
     const renderRowContent = () => {
         const rowFields = row.fields.map((field, index) => (
             <Grid key={field.type + index} width={1} item xs={12} sm={field.weight}>
-                <FormFieldRenderer field={field} form={form} setForm={setForm} />
+                <FormFieldRenderer field={field} form={form} setForm={setForm} isSummary={isSummary} />
             </Grid>
         ));
 

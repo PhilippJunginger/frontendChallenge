@@ -8,10 +8,11 @@ interface NumberFieldProps {
     fieldValue: number | undefined;
     handleChange: (value: number | undefined, formFieldName: string) => void;
     optionalLabel: string;
+    isSummary?: boolean;
 }
 
 export default function NumberFormField(props: NumberFieldProps) {
-    const { field: numberField, fieldValue, optionalLabel, handleChange } = props;
+    const { field: numberField, fieldValue, optionalLabel, handleChange, isSummary } = props;
 
     const { control } = useFormContext();
     const controllerName = numberField.formFieldName;
@@ -31,6 +32,7 @@ export default function NumberFormField(props: NumberFieldProps) {
             render={({ field, fieldState }) => (
                 <TextField
                     fullWidth
+                    disabled={isSummary}
                     value={fieldValue ?? ''}
                     onChange={handleNumberInput}
                     inputRef={field.ref}
