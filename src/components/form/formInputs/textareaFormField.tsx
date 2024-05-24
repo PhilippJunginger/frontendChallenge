@@ -1,22 +1,19 @@
-import { TextAreaField } from '../../../models/formTemplates/types/fields.ts';
 import { Controller, useFormContext } from 'react-hook-form';
-import { ChangeEvent } from 'react';
 import { TextField } from '@mui/material';
+import { TextAreaField } from '../../../../models/formTemplates/types/fields.ts';
 
 interface TextAreaFieldProps {
     field: TextAreaField;
+    fieldValue: string | undefined;
+    optionalLabel: string;
+    handleChange: (value: string | undefined, formFieldName: string) => void;
 }
 
 export default function TextAreaFormField(props: TextAreaFieldProps) {
-    const { field: textAreaField } = props;
+    const { field: textAreaField, fieldValue, optionalLabel, handleChange } = props;
 
-    const { control, setValue } = useFormContext();
+    const { control } = useFormContext();
     const controllerName = textAreaField.formFieldName;
-
-    const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const value = event.target.value;
-        setValue(controllerName, value);
-    };
 
     return (
         <Controller
@@ -25,12 +22,13 @@ export default function TextAreaFormField(props: TextAreaFieldProps) {
             render={({ field, fieldState }) => (
                 <TextField
                     fullWidth
-                    onChange={handleOnChange}
+                    value={fieldValue ?? ''}
+                    onChange={(e) => handleChange(e.target.value, textAreaField.formFieldName)}
                     inputRef={field.ref}
                     multiline
                     minRows={5}
                     maxRows={5}
-                    label={textAreaField.label}
+                    label={textAreaField.label + optionalLabel}
                     error={!!fieldState.error}
                     helperText={fieldState.error?.message ?? undefined}
                 />

@@ -1,26 +1,25 @@
-import { CheckboxField } from '../../../models/formTemplates/types/fields.ts';
-import { useFormContext } from 'react-hook-form';
-import { ChangeEvent } from 'react';
 import { Checkbox, FormControlLabel, Typography } from '@mui/material';
+import { CheckboxField } from '../../../../models/formTemplates/types/fields.ts';
 
 interface CheckboxFieldProps {
     field: CheckboxField;
+    fieldValue: string[] | undefined;
+    handleChange: (value: string | undefined, formFieldName: string) => void;
 }
 
 export default function CheckboxFormField(props: CheckboxFieldProps) {
-    const { field: checkboxField } = props;
+    const { field: checkboxField, fieldValue, handleChange } = props;
 
-    const { setValue } = useFormContext();
-    const controllerName = checkboxField.formFieldName;
-
-    const handleOnClick = (event: ChangeEvent<HTMLInputElement>) => {
-        const value = event.target.value;
-        setValue(controllerName, value);
-    };
+    const isSelectedValue = Array.isArray(fieldValue) && fieldValue?.includes(checkboxField.selectedValue);
 
     return (
         <FormControlLabel
-            control={<Checkbox onChange={handleOnClick} />}
+            control={
+                <Checkbox
+                    checked={isSelectedValue}
+                    onChange={() => handleChange(checkboxField.selectedValue, checkboxField.formFieldName)}
+                />
+            }
             label={<Typography>{checkboxField.label}</Typography>}
         />
     );

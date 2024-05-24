@@ -1,41 +1,63 @@
-import CheckboxFormField from './formInputs/checkboxFormField.tsx';
-import NumberFormField from './formInputs/numberFormField.tsx';
-import RadioFormField from './formInputs/radioFormField.tsx';
-import StringFormField from './formInputs/stringFormField.tsx';
-import TextAreaFormField from './formInputs/textareaFormField.tsx';
-import { Grid } from '@mui/material';
+import { FormControl, FormHelperText, Grid, RadioGroup } from '@mui/material';
 import { Row } from '../../../models/formTemplates/types/row.ts';
-import { FIELD_TYPE, FormField } from '../../../models/formTemplates/types/fields.ts';
+import { Controller } from 'react-hook-form';
+import FormFieldRenderer from './formField.tsx';
+import { Form, SetAtom } from '../../../models/form/form.ts';
+import { SetStateAction } from 'react';
+import theme from '../../assets/theme.ts';
 
 interface FormRowProps {
     row: Row;
+    form: Form;
+    setForm: SetAtom<[SetStateAction<Form>], void>;
 }
 
 export default function FormRow(props: FormRowProps) {
-    const { row } = props;
+    const { row, form, setForm } = props;
 
-    const handleRenderField = (field: FormField) => {
-        switch (field.type) {
-            case FIELD_TYPE.CHECKBOX:
-                return <CheckboxFormField field={field} />;
-            case FIELD_TYPE.NUMBER:
-                return <NumberFormField field={field} />;
-            case FIELD_TYPE.RADIO:
-                return <RadioFormField field={field} />;
-            case FIELD_TYPE.STRING:
-                return <StringFormField field={field} />;
-            case FIELD_TYPE.TEXTAREA:
-                return <TextAreaFormField field={field} />;
+    const renderRowContent = () => {
+        const rowFields = row.fields.map((field, index) => (
+            <Grid key={field.type + index} width={1} item xs={12} sm={field.weight}>
+                <FormFieldRenderer field={field} form={form} setForm={setForm} />
+            </Grid>
+        ));
+
+        if (row.radioId) {
+            const isRadioGroupMandatory = row.fields.find((field) => field.formFieldName === row.radioId)?.mandatory;
+
+            return (
+                <Controller
+                    name={row.radioId}
+                    rules={{
+                        required: isRadioGroupMandatory ? 'Please select one of the available options' : false,
+                    }}
+                    render={({ fieldState }) => (
+                        <FormControl
+                            sx={{
+                                ml: 1,
+                                p: 1,
+                                border: fieldState.error ? 1 : undefined,
+                                borderColor: fieldState.error ? theme.palette.error.main : undefined,
+                                borderRadius: fieldState.error ? 2.5 : undefined,
+                            }}
+                            fullWidth
+                            error={!!fieldState.error}>
+                            <RadioGroup name={row.radioId}>
+                                <Grid container>{rowFields}</Grid>
+                            </RadioGroup>
+                            {!!fieldState.error && <FormHelperText>{fieldState.error.message}</FormHelperText>}
+                        </FormControl>
+                    )}
+                />
+            );
         }
+
+        return rowFields;
     };
 
     return (
         <Grid item width={1} container spacing={1} xs={12}>
-            {row.fields.map((field) => (
-                <Grid width={1} item xs={12} md={field.weight}>
-                    {handleRenderField(field)}
-                </Grid>
-            ))}
+            {renderRowContent()}
         </Grid>
     );
 }

@@ -51,7 +51,15 @@ const theme = createTheme({
         MuiTextField: {
             styleOverrides: {
                 root: {
+                    '.MuiInputLabel-asterisk': {
+                        display: 'none',
+                    },
                     backgroundColor: '#FFFFFF',
+                    '&  .MuiFormHelperText-root.Mui-error': {
+                        backgroundColor: '#FCFBF4',
+                        margin: 0,
+                        padding: 0,
+                    },
                 },
             },
         },

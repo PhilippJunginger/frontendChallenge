@@ -9,4 +9,5 @@ export type Row = FieldRow;
 export type FieldRow = {
     type: ROW_TYPE.FIELDS;
     fields: FormField[];
+    radioId?: string;
 };

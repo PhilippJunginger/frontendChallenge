@@ -20,26 +20,7 @@ export const PersonalInformationTemplate: Template = {
                 {
                     type: FIELD_TYPE.STRING,
                     weight: 6,
-                    label: 'Firstname',
-                    mandatory: true,
-                    formFieldName: 'lastName',
-                },
-            ],
-        },
-        {
-            type: ROW_TYPE.FIELDS,
-            fields: [
-                {
-                    type: FIELD_TYPE.STRING,
-                    weight: 6,
-                    label: 'Firstname',
-                    mandatory: true,
-                    formFieldName: 'firstName',
-                },
-                {
-                    type: FIELD_TYPE.STRING,
-                    weight: 6,
-                    label: 'Firstname',
+                    label: 'Lastname',
                     mandatory: true,
                     formFieldName: 'lastName',
                 },
@@ -64,7 +45,7 @@ export const PersonalInformationTemplate: Template = {
                 {
                     type: FIELD_TYPE.STRING,
                     weight: 6,
-                    label: 'phone',
+                    label: 'Mobile Phone',
                     mandatory: true,
                     formFieldName: 'phone',
                     inputType: 'tel',

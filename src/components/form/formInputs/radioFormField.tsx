@@ -1,26 +1,26 @@
-import { RadioField } from '../../../models/formTemplates/types/fields.ts';
-import { useFormContext } from 'react-hook-form';
-import { ChangeEvent } from 'react';
 import { FormControlLabel, Radio, Typography } from '@mui/material';
+import { RadioField } from '../../../../models/formTemplates/types/fields.ts';
 
 interface RadioFieldProps {
     field: RadioField;
+    fieldValue: string | undefined;
+    handleChange: (value: string, formFieldName: string) => void;
 }
 
 export default function RadioFormField(props: RadioFieldProps) {
-    const { field: radioField } = props;
+    const { field: radioField, fieldValue, handleChange } = props;
 
-    const { setValue } = useFormContext();
-    const controllerName = radioField.formFieldName;
-
-    const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const value = event.target.value;
-        setValue(controllerName, value);
-    };
+    const isSelectedValue = fieldValue == radioField.selectedValue;
 
     return (
         <FormControlLabel
-            control={<Radio onChange={handleOnChange} />}
+            control={
+                <Radio
+                    checked={isSelectedValue}
+                    name={radioField.formFieldName}
+                    onChange={() => handleChange(radioField.selectedValue, radioField.formFieldName)}
+                />
+            }
             label={<Typography>{radioField.label}</Typography>}
         />
     );

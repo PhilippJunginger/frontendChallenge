@@ -1,26 +1,32 @@
 import FormRow from './formRow.tsx';
 import { Grid, Typography } from '@mui/material';
-import { FormProvider, useForm } from 'react-hook-form';
 import { Template } from '../../../models/formTemplates/types/template.ts';
+import { useAtom, useAtomValue } from 'jotai/index';
+import { formFamily } from '../../../models/form/form.ts';
+import { progressItemsAtom } from '../../assets/atoms/progressAtoms.ts';
 
 interface FormTemplateProps {
-    template: Template | undefined;
+    template: Template;
 }
 
 export default function FormTemplate(props: FormTemplateProps) {
     const { template } = props;
-    const methods = useForm();
+
+    const [form, setForm] = useAtom(formFamily({ type: template.type, data: {} }));
+    const hasNoProgressItems = useAtomValue(progressItemsAtom).length === 0;
 
     return (
-        <FormProvider {...methods}>
-            <form style={{ width: '75%', margin: 'auto' }}>
-                <Grid container spacing={2} width={1}>
-                    <Grid item>
-                        <Typography typography={'h5'}>{template?.name}</Typography>
-                    </Grid>
-                    {template?.rows.map((row) => <FormRow row={row} />)}
-                </Grid>
-            </form>
-        </FormProvider>
+        <Grid
+            container
+            rowSpacing={2}
+            width={1}
+            sx={{ width: { md: 0.75 }, mx: 'auto', mt: hasNoProgressItems ? 10 : undefined }}>
+            <Grid item>
+                <Typography typography={'h5'}>{template?.name}</Typography>
+            </Grid>
+            {template?.rows.map((row, index) => (
+                <FormRow key={row.type + index} row={row} form={form} setForm={setForm} />
+            ))}
+        </Grid>
     );
 }

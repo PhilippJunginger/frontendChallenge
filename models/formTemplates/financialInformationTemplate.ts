@@ -73,6 +73,7 @@ export const FinancialInformationTemplate: Template = {
         },
         {
             type: ROW_TYPE.FIELDS,
+            radioId: 'salary',
             fields: Object.values(SALARY).map((salary) => ({
                 type: FIELD_TYPE.RADIO,
                 weight: 4,

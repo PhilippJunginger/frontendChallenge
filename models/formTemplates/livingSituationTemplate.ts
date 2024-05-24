@@ -51,7 +51,7 @@ export const LivingSituationTemplate: Template = {
             fields: [
                 {
                     type: FIELD_TYPE.TEXTAREA,
-                    weight: 4,
+                    weight: 12,
                     label: 'Reason for relocation',
                     mandatory: false,
                     formFieldName: 'reasonForRelocation',
