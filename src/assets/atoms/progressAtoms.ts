@@ -24,13 +24,6 @@ export const progressItemsAtom = atom<ProgressItem[]>((get) => {
         const formTypeData = tenantApplication[formType];
         const validationResult = ValidatorMapObject[formType].safeParse(formTypeData);
 
-        console.log(
-            {
-                type: formType,
-                isFilledOut: validationResult.success,
-            },
-            validationResult.error?.errors,
-        );
         return {
             type: formType,
             isFilledOut: validationResult.success,

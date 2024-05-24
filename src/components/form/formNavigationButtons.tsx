@@ -1,23 +1,22 @@
 import { Box, Button } from '@mui/material';
 import { FORM_TYPE, Template } from '../../../models/formTemplates/types/template.ts';
 import theme from '../../assets/theme.ts';
-import { SetAtom } from '../../../models/form/form.ts';
 import { useSetAtom } from 'jotai/index';
 import { formsVisitedAtom } from '../../assets/atoms/progressAtoms.ts';
+import { useNavigate } from 'react-router-dom';
 
 interface FormNavigationButtonsProps {
     template: Template;
     onSubmit: () => Promise<void>;
-    setCurrentFormType: SetAtom<[newType: FORM_TYPE], void>;
 }
 
 export default function FormNavigationButtons(props: FormNavigationButtonsProps) {
-    const { template, onSubmit, setCurrentFormType } = props;
+    const { template, onSubmit } = props;
 
+    const navigate = useNavigate();
     const setFormsVisited = useSetAtom(formsVisitedAtom);
 
     const handleFormNavigationClick = (type: FORM_TYPE) => {
-        setCurrentFormType(type);
         setFormsVisited((prev) => {
             if (!prev.includes(template.type)) {
                 return [...prev, template.type];
@@ -25,6 +24,7 @@ export default function FormNavigationButtons(props: FormNavigationButtonsProps)
 
             return [...prev];
         });
+        navigate('/forms/' + type);
     };
 
     const handleSubmitButtonClick = async () => {

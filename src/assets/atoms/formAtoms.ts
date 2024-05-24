@@ -7,11 +7,11 @@ import { LivingSituationTemplate } from '../../../models/formTemplates/livingSit
 import { PreferencesTemplate } from '../../../models/formTemplates/preferencesTemplate.ts';
 import { FinancialInformationTemplate } from '../../../models/formTemplates/financialInformationTemplate.ts';
 
-const availableTemplates = [
+export const availableTemplates = [
     PersonalInformationTemplate,
+    FinancialInformationTemplate,
     LivingSituationTemplate,
     PreferencesTemplate,
-    FinancialInformationTemplate,
 ];
 
 export const currentFormTypeAtom = atom<FORM_TYPE>(FORM_TYPE.PERSONAL_INFORMATION);

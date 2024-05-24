@@ -34,9 +34,8 @@ export default function Progress() {
     return (
         <Box sx={{ mx: 'auto', mb: 4, display: 'flex', gap: 1 }}>
             {progressItems.map(({ type, isFilledOut }) => (
-                <Grow in={true} timeout={600}>
+                <Grow in={true} timeout={600} key={type}>
                     <IconButton
-                        key={type}
                         size={'large'}
                         onClick={() => handleProgressItemClick(type)}
                         sx={{
