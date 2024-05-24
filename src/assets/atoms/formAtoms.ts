@@ -14,17 +14,6 @@ export const availableTemplates = [
     PreferencesTemplate,
 ];
 
-export const currentFormTypeAtom = atom<FORM_TYPE>(FORM_TYPE.PERSONAL_INFORMATION);
-
-export const currentFormTemplateAtom = atom((get) => {
-    const currentFormType = get(currentFormTypeAtom);
-    return availableTemplates.find((availableTemplate) => availableTemplate.type === currentFormType);
-});
-
-export const setCurrentFormTypeAtom = atom(null, (_get, set, newType: FORM_TYPE) => {
-    set(currentFormTypeAtom, newType);
-});
-
 export const tenantApplicationFormAtom = atom<TenantApplicationForm>((get) => {
     return {
         [FORM_TYPE.PERSONAL_INFORMATION]: get(formFamily({ type: FORM_TYPE.PERSONAL_INFORMATION, data: {} })).data,

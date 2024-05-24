@@ -5,6 +5,7 @@ export default function Header() {
         <Box
             sx={{
                 p: 2,
+                pl: 4,
                 display: 'flex',
                 flexDirection: {
                     xs: 'column',

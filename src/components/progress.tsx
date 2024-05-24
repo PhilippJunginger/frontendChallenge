@@ -6,16 +6,16 @@ import React from 'react';
 import HomeIcon from '@mui/icons-material/Home';
 import WorkIcon from '@mui/icons-material/Work';
 import RoomPreferencesIcon from '@mui/icons-material/RoomPreferences';
-import { useAtomValue, useSetAtom } from 'jotai/index';
-import { currentFormTypeAtom } from '../assets/atoms/formAtoms.ts';
+import { useAtomValue } from 'jotai/index';
 import { progressItemsAtom } from '../assets/atoms/progressAtoms.ts';
+import { useNavigate } from 'react-router-dom';
 
 export default function Progress() {
-    const setCurrentFormType = useSetAtom(currentFormTypeAtom);
     const progressItems = useAtomValue(progressItemsAtom);
+    const navigate = useNavigate();
 
     const handleProgressItemClick = (clickedType: FORM_TYPE) => {
-        setCurrentFormType(clickedType);
+        navigate(`/forms/${clickedType}`);
     };
 
     const getFormTypeIcon = (type: FORM_TYPE): React.JSX.Element => {
