@@ -1,4 +1,4 @@
-import { atom } from 'jotai/index';
+import { atom } from 'jotai';
 import { FORM_TYPE } from '../../../models/formTemplates/types/template.ts';
 import { TenantApplicationForm } from '../../../models/form/tenantApplicationForm.ts';
 import { formFamily } from '../../../models/form/form.ts';

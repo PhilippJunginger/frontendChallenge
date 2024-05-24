@@ -1,12 +1,12 @@
 import { Box, Button, Collapse, Typography } from '@mui/material';
 import { availableTemplates } from '../../assets/atoms/formAtoms.ts';
-import FormTemplate from '../form/formTemplate.tsx';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { formFamily } from '../../../models/form/form.ts';
 import { FORM_TYPE } from '../../../models/formTemplates/types/template.ts';
 import { useSetAtom } from 'jotai/index';
 import { formsVisitedAtom } from '../../assets/atoms/progressAtoms.ts';
+import FormTemplate from '../form/templateStructure/formTemplate.tsx';
 
 export default function Summary() {
     const navigate = useNavigate();

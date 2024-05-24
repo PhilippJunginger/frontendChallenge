@@ -37,6 +37,7 @@ export default function Progress() {
                 <Grow in={true} timeout={600} key={type}>
                     <IconButton
                         size={'large'}
+                        aria-label={type}
                         onClick={() => handleProgressItemClick(type)}
                         sx={{
                             height: 1,

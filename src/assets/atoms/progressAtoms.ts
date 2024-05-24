@@ -1,4 +1,4 @@
-import { atom } from 'jotai/index';
+import { atom } from 'jotai';
 import { FORM_TYPE } from '../../../models/formTemplates/types/template.ts';
 import { tenantApplicationFormAtom } from './formAtoms.ts';
 import { personalInformationValidator } from '../../../models/form/subForms/personalInformationForm.ts';

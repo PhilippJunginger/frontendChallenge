@@ -6,8 +6,8 @@ import { useEffect } from 'react';
 import { tenantApplicationFormAtom } from '../../assets/atoms/formAtoms.ts';
 import FormNavigationButtons from './formNavigationButtons.tsx';
 import { formsVisitedAtom } from '../../assets/atoms/progressAtoms.ts';
-import FormTemplate from './formTemplate.tsx';
 import { useNavigate } from 'react-router-dom';
+import FormTemplate from './templateStructure/formTemplate.tsx';
 
 interface FormContainerProps {
     template: Template;

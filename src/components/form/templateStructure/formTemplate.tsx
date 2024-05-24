@@ -1,9 +1,9 @@
 import FormRow from './formRow.tsx';
 import { Grid, Typography } from '@mui/material';
-import { Template } from '../../../models/formTemplates/types/template.ts';
 import { useAtom, useAtomValue } from 'jotai/index';
-import { formFamily } from '../../../models/form/form.ts';
-import { progressItemsAtom } from '../../assets/atoms/progressAtoms.ts';
+import { Template } from '../../../../models/formTemplates/types/template.ts';
+import { formFamily } from '../../../../models/form/form.ts';
+import { progressItemsAtom } from '../../../assets/atoms/progressAtoms.ts';
 
 interface FormTemplateProps {
     template: Template;
