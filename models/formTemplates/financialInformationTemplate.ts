@@ -16,7 +16,7 @@ export const FinancialInformationTemplate: Template = {
                     type: FIELD_TYPE.STRING,
                     weight: 12,
                     label: 'Occupation Title',
-                    mandatory: false,
+                    mandatory: true,
                     formFieldName: 'occupationTitle',
                 },
             ],

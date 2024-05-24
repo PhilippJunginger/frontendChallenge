@@ -23,7 +23,7 @@ export const PreferencesTemplate: Template = {
                     formFieldName: 'maxRent',
                     label: 'Max Rent',
                     weight: 6,
-                    mandatory: false,
+                    mandatory: true,
                 },
             ],
         },

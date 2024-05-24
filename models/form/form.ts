@@ -19,7 +19,7 @@ export const formFamily = atomFamily(
         switch (form.type) {
             case FORM_TYPE.FINANCIAL_INFORMATION: {
                 const financialInit: FinancialInformationForm = {
-                    occupationTitle: '',
+                    occupationTitle: undefined,
                     salary: undefined,
                 };
                 form.data = financialInit;
@@ -27,11 +27,11 @@ export const formFamily = atomFamily(
             }
             case FORM_TYPE.LIVING_SITUATION: {
                 const livingSituationInit: LivingSituationForm = {
-                    currentAdress: {
-                        street: '',
-                        houseNumber: '',
-                        postCode: '',
-                        country: '',
+                    currentAddress: {
+                        street: undefined,
+                        houseNumber: undefined,
+                        postCode: undefined,
+                        country: undefined,
                     },
                 };
                 form.data = livingSituationInit;
@@ -39,16 +39,17 @@ export const formFamily = atomFamily(
             }
             case FORM_TYPE.PERSONAL_INFORMATION: {
                 const personalInit: PersonalInformationForm = {
-                    firstName: '',
-                    lastName: '',
-                    eMail: '',
-                    phone: '',
+                    firstName: undefined,
+                    lastName: undefined,
+                    eMail: undefined,
+                    phone: undefined,
                 };
                 form.data = personalInit;
                 break;
             }
             case FORM_TYPE.PREFERENCES: {
                 const preferencesInit: PreferencesForm = {
+                    maxRent: undefined,
                     perks: [],
                 };
                 form.data = preferencesInit;

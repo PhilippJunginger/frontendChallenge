@@ -1,10 +1,10 @@
 import { z } from 'zod';
 
 export type Address = {
-    street: string;
-    houseNumber: string;
-    country: string;
-    postCode: string;
+    street: string | undefined;
+    houseNumber: string | undefined;
+    country: string | undefined;
+    postCode: string | undefined;
 };
 
 export const addressValidator = z.strictObject({

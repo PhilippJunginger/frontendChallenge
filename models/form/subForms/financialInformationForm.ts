@@ -10,7 +10,7 @@ export enum SALARY {
 }
 
 export type FinancialInformationForm = {
-    occupationTitle: string;
+    occupationTitle: string | undefined;
     companyName?: string;
     address?: Address;
     salary: SALARY | undefined;

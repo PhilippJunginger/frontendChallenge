@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { Address, addressValidator } from '../types/address';
 
 export interface LivingSituationForm {
-    currentAdress: Address;
+    currentAddress: Address;
     reasonForRelocation?: string;
 }
 

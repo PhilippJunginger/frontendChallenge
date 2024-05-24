@@ -26,7 +26,7 @@ export default function NumberFormField(props: NumberFieldProps) {
             control={control}
             name={controllerName}
             rules={{
-                required: !numberField.mandatory ? 'This field is mandatory' : false,
+                required: numberField.mandatory ? 'This field is mandatory' : false,
             }}
             render={({ field, fieldState }) => (
                 <TextField

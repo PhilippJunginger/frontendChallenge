@@ -17,25 +17,27 @@ interface FormFieldProps {
 
 export default function FormFieldRenderer(props: FormFieldProps) {
     const { field, setForm, form } = props;
+    const { formFieldName, type, mandatory } = field;
 
     const { setValue, clearErrors } = useFormContext();
-    const fieldValue = get(form.data, field.formFieldName);
-    const optionalLabel = !field.mandatory ? ' (optional)' : '';
+    const fieldValue = get(form.data, formFieldName);
+    const optionalLabel = !mandatory ? ' (optional)' : '';
 
-    const handleChange = (value: string | number | undefined, formFieldName: string) => {
+    const handleChange = (value: string | number | undefined) => {
         const updatedData = structuredClone(form);
-        const dataReference = get(updatedData, formFieldName);
+        const dataReference = get(updatedData.data, formFieldName);
 
-        if (field.type === FIELD_TYPE.CHECKBOX && typeof value === 'string') {
-            set(updatedData.data, formFieldName, handleCheckboxInput(dataReference, value));
-            setValue(field.formFieldName, handleCheckboxInput(dataReference, value));
+        if (type === FIELD_TYPE.CHECKBOX && typeof value === 'string') {
+            const checkboxValue = handleCheckboxInput(dataReference, value);
+            set(updatedData.data, formFieldName, checkboxValue);
+            setValue(formFieldName, checkboxValue);
         } else {
             set(updatedData.data, formFieldName, typeof value === 'string' && !value.length ? undefined : value);
-            setValue(field.formFieldName, typeof value === 'string' && !value.length ? undefined : value);
+            setValue(formFieldName, typeof value === 'string' && !value.length ? undefined : value);
         }
 
-        if (value) {
-            clearErrors(field.formFieldName);
+        if (value != null) {
+            clearErrors(formFieldName);
         }
 
         setForm(updatedData);
@@ -51,11 +53,11 @@ export default function FormFieldRenderer(props: FormFieldProps) {
         }
 
         existingData.push(value);
-        return existingData;
+        return [...existingData];
     }
 
     function handleRenderField() {
-        switch (field.type) {
+        switch (type) {
             case FIELD_TYPE.CHECKBOX:
                 return <CheckboxFormField field={field} handleChange={handleChange} fieldValue={fieldValue} />;
             case FIELD_TYPE.NUMBER:

@@ -1,10 +1,10 @@
 import { z } from 'zod';
 
 export type PersonalInformationForm = {
-    firstName: string;
-    lastName: string;
-    eMail: string;
-    phone: string;
+    firstName: string | undefined;
+    lastName: string | undefined;
+    eMail: string | undefined;
+    phone: string | undefined;
 };
 
 export const personalInformationValidator = z.strictObject({

@@ -10,12 +10,12 @@ export enum PERKS {
 
 export type PreferencesForm = {
     minRent?: number;
-    maxRent?: number;
+    maxRent: number | undefined;
     perks: PERKS[];
 };
 
 export const preferencesValidtor = z.strictObject({
     minRent: z.number().optional(),
-    maxRent: z.number().optional(),
+    maxRent: z.number(),
     perks: z.nativeEnum(PERKS).array(),
 });
