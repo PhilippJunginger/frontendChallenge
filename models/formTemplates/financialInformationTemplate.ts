@@ -72,6 +72,10 @@ export const FinancialInformationTemplate: Template = {
             ],
         },
         {
+            type: ROW_TYPE.HEADER,
+            text: 'Monthly income',
+        },
+        {
             type: ROW_TYPE.FIELDS,
             radioId: 'salary',
             fields: Object.values(SALARY).map((salary) => ({

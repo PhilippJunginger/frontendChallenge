@@ -28,6 +28,10 @@ export const PreferencesTemplate: Template = {
             ],
         },
         {
+            type: ROW_TYPE.HEADER,
+            text: 'Things I would like',
+        },
+        {
             type: ROW_TYPE.FIELDS,
             fields: Object.values(PERKS).map((perk) => ({
                 type: FIELD_TYPE.CHECKBOX,

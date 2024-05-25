@@ -43,7 +43,11 @@ export default function Progress() {
                             height: 1,
                             aspectRatio: '1/1',
                             border: 2,
-                            minHeight: 60,
+                            minHeight: {
+                                xs: 30,
+                                sm: 45,
+                                md: 60,
+                            },
                             display: 'flex',
                             backgroundColor: isFilledOut ? theme.palette.success.light : theme.palette.error.light,
                             justifyContent: 'center',

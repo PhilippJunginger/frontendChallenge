@@ -23,7 +23,7 @@ export default function FormTemplate(props: FormTemplateProps) {
             width={1}
             sx={{ width: { md: 0.75 }, mx: 'auto', mt: hasNoProgressItems && !isSummary ? 10 : undefined }}>
             <Grid item>
-                <Typography typography={'h5'}>{template?.name}</Typography>
+                <Typography typography={'h4'}>{template?.name}</Typography>
             </Grid>
             {template?.rows.map((row, index) => (
                 <FormRow key={row.type + index} row={row} form={form} setForm={setForm} isSummary={isSummary} />
